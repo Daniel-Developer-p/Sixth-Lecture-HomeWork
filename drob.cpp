@@ -28,8 +28,12 @@ public:
         std::cout << nominator / denominator - 1 << std::endl;
     }
 
-    void print_very_new() {
-        std::cout << nominator * 10 / denominator << std::endl;
+    int reduce(){
+        if(denominator % nominator == 0) {
+            return denominator / nominator;
+        } else {
+            return 0;
+        }
     }
 };
 
@@ -54,7 +58,7 @@ int main() {
     drob1 -> print();
     drob2 -> print();
     drob3 -> print_new();
-    drob3 -> print_very_new();
+    drob3 -> reduce();
 
     std::cout <<
                 drob1 -> nominator
