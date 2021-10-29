@@ -5,6 +5,7 @@ class Fraction {
 public:
     int nominator;
     int denominator;
+    int i;
 
 public:
     Fraction(int nominator, int denominator) {
@@ -21,21 +22,27 @@ public:
 
     void print() {
         std::cout << nominator << "/" << denominator << std::endl;
-    }
+    };
 
+    void print_reduct() {
 
-    void print_new() {
-        std::cout << nominator / denominator - 1 << std::endl;
-    }
-
-    int reduce(){
-        if(denominator % nominator == 0) {
-            return denominator / nominator;
+        if (nominator < denominator) {
+            i = nominator;
         } else {
-            return 0;
+            i = denominator;
+        };
+
+        for ( ; i > 0; i-- ) {
+            if (nominator % i == 0 && denominator % i == 0) {
+                nominator /= i;
+                denominator /= i;
+            }
         }
-    }
+
+        std::cout << nominator << "/" << denominator << std::endl;
+    };
 };
+
 
 Fraction* create_fraction(bool is_integer) {
     int n, m;
@@ -52,22 +59,9 @@ Fraction* create_fraction(bool is_integer) {
 int main() {
 
     Fraction* drob1 = create_fraction(false);
-    Fraction* drob2 = create_fraction(true);
-    Fraction* drob3 = create_fraction(true);
 
     drob1 -> print();
-    drob2 -> print();
-    drob3 -> print_new();
-    drob3 -> reduce();
+    drob1 -> print_reduct();
 
-    std::cout <<
-                drob1 -> nominator
-                << "/" <<
-                drob1 -> denominator << std::endl;
-
-    std::cout <<
-              drob2 -> nominator
-              << "/" <<
-              drob2 -> denominator << std::endl;
     return 0;
 }
